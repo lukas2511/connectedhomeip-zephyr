@@ -26,6 +26,7 @@
 if(CONFIG_CHIP)
     include(ExternalProject)
     include(../zephyr-util.cmake)
+    include(generate_factory_data.cmake)
 
     #
     # ==============================================================================
@@ -100,6 +101,7 @@ if(CONFIG_CHIP)
     matter_add_gn_arg_bool("chip_malloc_sys_heap" CONFIG_CHIP_MALLOC_SYS_HEAP)
     matter_add_gn_arg_bool("chip_inet_config_enable_tcp_endpoint" FALSE)
     matter_add_gn_arg_bool("chip_enable_read_client" CONFIG_CHIP_ENABLE_READ_CLIENT)
+    matter_add_gn_arg_bool("chip_enable_factory_data" CONFIG_CHIP_FACTORY_DATA)
 
     if(BOARD STREQUAL "native_posix")
         matter_add_gn_arg_string("target_cpu" "x86")
@@ -139,4 +141,9 @@ if(CONFIG_CHIP)
         GN_DEPENDENCIES kernel
     )
     set_property(GLOBAL APPEND PROPERTY ZEPHYR_INTERFACE_LIBS chip)
+
+
+    if(CONFIG_CHIP_FACTORY_DATA_BUILD AND (NOT SYSBUILD OR NOT CONFIG_PARTITION_MANAGER_ENABLED))
+        nrfconnect_generate_factory_data()
+    endif()
 endif() # CONFIG_CHIP

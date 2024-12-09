@@ -103,6 +103,7 @@ def detectZclFile(zapFile):
             if package["pathRelativity"] == "relativeToZap":
                 path = os.path.abspath(os.path.join(
                     os.path.dirname(zapFile), package["path"]))
+                print(zapFile)
             elif package["pathRelativity"] == "resolveEnvVars":
                 path = os.path.expandvars(package["path"])
             else:

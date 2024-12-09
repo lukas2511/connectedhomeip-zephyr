@@ -22,36 +22,15 @@ if CHIP
 # MCU Manager and SMP configuration
 config MCUMGR
 	bool
-	default y
+	default n
 
 config MCUMGR_GRP_IMG
 	bool
-	default y
+	default n
 
 config MCUMGR_GRP_OS
 	bool
-	default y
-
-config MCUMGR_TRANSPORT_BT
-	bool
-	default y
-
-config MCUMGR_TRANSPORT_BT_AUTHEN
-	bool
 	default n
-
-config MCUMGR_TRANSPORT_NETBUF_COUNT
-	int
-	default 6
-
-# Increase BT MTU and RX buffer for big size DFU messages
-config BT_L2CAP_TX_MTU
-	int
-	default 498
-
-config BT_BUF_ACL_RX_SIZE
-	int
-	default 502
 
 # Increase MCUMGR_TRANSPORT_NETBUF_SIZE, as it must be big enough to fit MAX MTU + overhead and for single-image DFU default is 384 B
 config MCUMGR_TRANSPORT_NETBUF_SIZE
@@ -62,7 +41,5 @@ config MCUMGR_TRANSPORT_NETBUF_SIZE
 config SYSTEM_WORKQUEUE_STACK_SIZE
 	int
 	default 2800
-
-endif # CHIP_DFU_OVER_BT_SMP
 
 endif # CHIP

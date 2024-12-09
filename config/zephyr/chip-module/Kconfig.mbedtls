@@ -19,15 +19,6 @@ if CHIP
 config MBEDTLS
     default y
 
-config MBEDTLS_ENTROPY_ENABLED
-    default y
-
-config MBEDTLS_ENTROPY_ENABLED
-    default y
-
-config MBEDTLS_ZEPHYR_ENTROPY
-    default y
-
 config MBEDTLS_ENABLE_HEAP
     default y
 
