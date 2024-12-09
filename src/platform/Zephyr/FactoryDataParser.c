@@ -20,7 +20,6 @@
 
 #include <zcbor_decode.h>
 
-#include <stdio.h>
 #include <ctype.h>
 #include <string.h>
 
@@ -125,22 +124,16 @@ bool FindUserDataEntry(struct FactoryData * factoryData, const char * entry, voi
 
 bool ParseFactoryData(uint8_t * buffer, uint16_t bufferSize, struct FactoryData * factoryData)
 {
-    printf("doing some memset stuff\n");
     memset(factoryData, 0, sizeof(*factoryData));
-    printf("zcbor you\n");
     ZCBOR_STATE_D(states, MAX_FACTORY_DATA_NESTING_LEVEL, buffer, bufferSize, 1, 0);
 
-    printf("zcbor start decode\n");
     bool res = zcbor_map_start_decode(states);
     struct zcbor_string currentString;
 
-    printf("while res\n");
     while (res)
     {
-        printf("zcbor tstr decode\n");
         res = zcbor_tstr_decode(states, &currentString);
 
-        printf("parsing %s with length %d\n", currentString.value, currentString.len);
         if (!res)
         {
             res = true;
