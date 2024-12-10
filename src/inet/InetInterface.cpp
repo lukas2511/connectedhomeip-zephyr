@@ -891,7 +891,7 @@ CHIP_ERROR InterfaceIterator::GetInterfaceType(InterfaceType & type)
     // Zephyr doesn't define WiFi address type, so it shares the same type as Ethernet.
     else if (linkAddr->type == NET_LINK_ETHERNET)
     {
-        type = InterfaceType::WiFi;
+        type = InterfaceType::Ethernet;
     }
     else
     {
